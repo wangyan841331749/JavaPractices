@@ -10,5 +10,18 @@
         <artifactId>lombok</artifactId>
         <version>1.16.20</version>
   	</dependency>
+  	<!--阿里的json包 帮助json和object互转-->
+    <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>fastjson</artifactId>
+        <version>1.2.56</version>
+    </dependency>
+    <!-- 单元测试需要用到的jar包依赖 -->
+    <dependency>
+	    <groupId>junit</groupId>
+	    <artifactId>junit</artifactId>
+	    <version>4.12</version>
+	    <scope>test</scope>
+    </dependency>
   </dependencies>
 </project>

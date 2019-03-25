@@ -3,4 +3,12 @@
   <groupId>com.plase</groupId>
   <artifactId>JavaPractices</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <dependencies>
+  	<!--帮助生成get和set方法-->
+  	<dependency>
+  		<groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.16.20</version>
+  	</dependency>
+  </dependencies>
 </project>

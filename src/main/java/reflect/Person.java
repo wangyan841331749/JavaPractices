@@ -48,4 +48,6 @@ public class Person implements MyInterface, MyInterface2{
 	private void privateString(String name){
 		System.out.println("private..." + name);
 	}
+	
+	
 }

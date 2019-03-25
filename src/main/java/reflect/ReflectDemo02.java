@@ -1,9 +1,14 @@
 package reflect;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Properties;
 
 public class ReflectDemo02 {
 
@@ -83,10 +88,54 @@ public class ReflectDemo02 {
 		Person instance = (Person) constructor.newInstance(12);
 		System.out.println(instance);
 	}
-	public static void main(String[] args) throws InstantiationException, IllegalAccessException, NoSuchFieldException, SecurityException, NoSuchMethodException, IllegalArgumentException, InvocationTargetException {
+	
+	//动态加载类名和方法
+	public static void demo04() throws FileNotFoundException, IOException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException  {
+		Properties prop = new Properties();
+		prop.load(new FileReader("class.properties"));
+		String className = prop.getProperty("classname");
+		String methodName = prop.getProperty("methodname");
+		Class<?> perClass = null;
+		try {
+			perClass = Class.forName(className);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		Method method = perClass.getMethod(methodName);
+		method.invoke(perClass.newInstance());
+	}
+	
+	//反射可以越过泛型检查
+	//虽然可以通过反射 访问private等访问修饰符不允许访问的变量，也可以忽略泛型检查，但是不建议这样做，会造成程序混乱
+	public static void demo05() throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
+		ArrayList<Integer> list = new ArrayList<>();
+		list.add(123);
+		list.add(3);
+		list.add(2);
+		Class<?> listClass = list.getClass();
+		Method method = listClass.getMethod("add", Object.class);
+		method.invoke(list, "zs");
+		System.out.println(list);
+	}
+	
+	public static void demo06() throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException{
+		Person per = new Person();
+		PropertyUtil.setProperty(per, "name", "zs");
+		PropertyUtil.setProperty(per,"age", 23);
+		
+		Student stu = new Student();
+		PropertyUtil.setProperty(stu, "score", 99);
+		System.out.println(per.getName()+","+per.getAge());
+		System.out.println(stu.getScore());
+	}
+	public static void main(String[] args) throws InstantiationException, IllegalAccessException, NoSuchFieldException, SecurityException, NoSuchMethodException, IllegalArgumentException, InvocationTargetException, FileNotFoundException, IOException {
 		//demo01();
 		//demo02();
-		demo03();
+		//demo03();
+		demo04();
+		//demo05();
+		//demo06();
 	}
 
 }

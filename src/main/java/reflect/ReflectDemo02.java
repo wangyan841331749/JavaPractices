@@ -10,6 +10,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Properties;
 
+
 public class ReflectDemo02 {
 
 	//获取对象的实例，并操作对象
@@ -43,9 +44,9 @@ public class ReflectDemo02 {
 		idField.set(per, 1);
 		System.out.println(per.getId());
 		System.out.println("==============");
-		Method method = perClass.getDeclaredMethod("privateMethod", null);
+		Method method = perClass.getDeclaredMethod("privateMethod");
 		method.setAccessible(true);
-		method.invoke(per,null);//方法的调用:invoke
+		method.invoke(per);//方法的调用:invoke
 		
 		Method method2 = perClass.getDeclaredMethod("privateMethod2", String.class);
 		method2.setAccessible(true);
@@ -92,7 +93,8 @@ public class ReflectDemo02 {
 	//动态加载类名和方法
 	public static void demo04() throws FileNotFoundException, IOException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException  {
 		Properties prop = new Properties();
-		prop.load(new FileReader("class.properties"));
+		final String namePath = "reflect/class.properties";
+		prop.load(new FileReader(ReflectDemo02.class.getClassLoader().getResource(namePath).getPath()));
 		String className = prop.getProperty("classname");
 		String methodName = prop.getProperty("methodname");
 		Class<?> perClass = null;
@@ -133,7 +135,7 @@ public class ReflectDemo02 {
 		//demo01();
 		//demo02();
 		//demo03();
-		demo04();
+		  demo04();
 		//demo05();
 		//demo06();
 	}

@@ -2,12 +2,12 @@
     {
         "id": "user_list",
         "key": "id",
-        "tableName": "用户列表",
+        "tableName": "鐢ㄦ埛鍒楄〃",
         "className": "cn.dmego.domain.User",
         "column": [
             {
                 "key": "rowIndex",
-                "header": "序号",
+                "header": "搴忓彿",
                 "width": "50",
                 "allowSort": "false"
             },
@@ -18,7 +18,7 @@
             },
             {
                 "key": "name",
-                "header": "姓名",
+                "header": "濮撳悕",
                 "width": "100",
                 "allowSort": "true"
             }
@@ -27,12 +27,12 @@
     {
         "id": "role_list",
         "key": "id",
-        "tableName": "角色列表",
+        "tableName": "瑙掕壊鍒楄〃",
         "className": "cn.dmego.domain.Role",
         "column": [
             {
                 "key": "rowIndex",
-                "header": "序号",
+                "header": "搴忓彿",
                 "width": "50",
                 "allowSort": "false"
             },
@@ -43,7 +43,7 @@
             },
             {
                 "key": "name",
-                "header": "名称",
+                "header": "鍚嶇О",
                 "width": "100",
                 "allowSort": "true"
             }

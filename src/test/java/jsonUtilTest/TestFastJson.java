@@ -3,19 +3,14 @@ package jsonUtilTest;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import jsonUtil.Column;
 import jsonUtil.Query;
 import jsonUtil.User;
 import jsonUtil.UserGroup;
 
-import org.apache.commons.collections4.map.LinkedMap;
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 
@@ -95,52 +90,8 @@ public class TestFastJson {
 		String jsontext = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
 		List<Query> queryList = JSON.parseArray(jsontext, Query.class);
 		for (Query query : queryList) {
-			List<Column> columnList = new ArrayList<Column>();
-			List<LinkedMap<String, Object>> columns = query.getColumn();
-			for (LinkedMap<String, Object> linkedMap : columns) {
-				Column column = (Column) map2Object(linkedMap, Column.class);
-				System.out.println(column.toString());
-				columnList.add(column);
-			}
-			query.setColumnList(columnList);
+			System.out.println(query);
 		}
 		
 	}
-	
-	/**
-	 * 
-	 * @param map
-	 * @param clazz
-	 * @return
-	 * @Description test()方法需要用到此方法，该方法具体功能还没有搞清楚
-	 */
-	public static Object map2Object(Map<String, Object> map, Class<?> clazz) {
-        if (map == null) {
-            return null;
-        }
-        Object obj = null;
-        try {
-            obj = clazz.newInstance();
-            Field[] fields = obj.getClass().getDeclaredFields();
-            for (Field field : fields) {
-                int mod = field.getModifiers();
-                if (Modifier.isStatic(mod) || Modifier.isFinal(mod)) {
-                    continue;
-                }
-                field.setAccessible(true);
-                String flag = (String) map.get(field.getName());
-                if(flag != null){
-                    if(flag.equals("false") || flag.equals("true")){
-                        field.set(obj, Boolean.parseBoolean(flag));
-                    }else{
-                        field.set(obj, map.get(field.getName()));
-                    }
-                }                
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } 
-        return obj;
-    }
-
 }

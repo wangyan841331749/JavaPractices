@@ -31,9 +31,15 @@
 	</dependency>
 	<!-- IOUtils需要用到它 -->
 	<dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.4</version>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>2.4</version>
+    </dependency>
+    <!-- Gson的依赖 -->
+    <dependency>
+	    <groupId>com.google.code.gson</groupId>
+	    <artifactId>gson</artifactId>
+	    <version>2.2.4</version>
     </dependency>
   </dependencies>
 </project>

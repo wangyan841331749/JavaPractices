@@ -1,0 +1,3 @@
+hello, this is a test file.
+and then I want test some chinese words. 
+for instance, that is "今天天气真好".

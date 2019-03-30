@@ -15,11 +15,17 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
-
-public class IOExample {
+/**
+ * 
+ * @author wangyan
+ * @date 2019年3月30日
+ * @Description 
+ * @version 2019年3月30日
+ */
+public class IoExample {
 
 	public static void main(String[] args) throws UnsupportedEncodingException, IOException {
-		Damo3();
+		demo3();
 	}
 	
 	/**
@@ -28,7 +34,7 @@ public class IOExample {
 	 * @throws IOException
 	 * @Description 字节流形式读取和写入
 	 */
-	public static void Demo1() throws UnsupportedEncodingException, IOException {
+	public static void demo1() throws UnsupportedEncodingException, IOException {
 		// 读取文件（字节流）
 		InputStream in = new FileInputStream("E:\\Test\\1.txt");
 		// 写入相应的文件
@@ -55,7 +61,7 @@ public class IOExample {
 	 * @throws IOException
 	 * @Description 缓存字节流读取与写入
 	 */
-	public static void Demo2() throws IOException {
+	public static void demo2() throws IOException {
 		// 读取文件(缓存字节流)
 		BufferedInputStream in = new BufferedInputStream(new FileInputStream("E:\\Test\\1.txt"));
 		// 写入相应的文件
@@ -85,7 +91,7 @@ public class IOExample {
 	 * @throws IOException
 	 * @Description
 	 */
-	public static void Damo3() throws IOException {
+	public static void demo3() throws IOException {
 		// 读取文件
 		InputStreamReader in = new InputStreamReader(new FileInputStream("E:\\Test\\1.txt"));
 		// 写入相应的文件
@@ -110,7 +116,7 @@ public class IOExample {
 	 * @throws IOException
 	 * @Description
 	 */
-	public static void Damo4() throws IOException {
+	public static void demo4() throws IOException {
 		// 读取文件(字符流)
         BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream("E:\\Test\\1.txt"),"GBK"));
         // 写入相应的文件
@@ -136,7 +142,7 @@ public class IOExample {
 	 * @throws IOException
 	 * @Description
 	 */
-	public static void Damo5() throws IOException {
+	public static void demo5() throws IOException {
 		// 读取文件(字节流)
         Reader in = new InputStreamReader(new FileInputStream("E:\\Test\\1.txt"),"GBK");
         // 写入相应的文件

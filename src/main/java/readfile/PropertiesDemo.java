@@ -1,4 +1,4 @@
-package readFile;
+package readfile;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -6,13 +6,20 @@ import java.io.InputStream;
 import java.util.Enumeration;
 import java.util.Properties;
 
+/**
+ * 
+ * @author wangyan
+ * @date 2019年3月30日
+ * @Description 
+ * @version 2019年3月30日
+ */
 public class PropertiesDemo {
-	public static final Properties prop = new Properties();
-	public static final String namePath = "readFile/file.properties";
+	public static final Properties PROP = new Properties();
+	public static final String NAME_PATH = "readFile/file.properties";
 	public static void init() {
-		InputStream inputStream = PropertiesDemo.class.getClassLoader().getResourceAsStream(namePath);
+		InputStream inputStream = PropertiesDemo.class.getClassLoader().getResourceAsStream(NAME_PATH);
 		try {
-			prop.load(inputStream);
+			PROP.load(inputStream);
 			inputStream.close();
 		} catch(IOException e) {
 			e.printStackTrace();
@@ -26,7 +33,7 @@ public class PropertiesDemo {
 	 * @Description 通过key获取value
 	 */
 	public static String get(String key) {
-		return prop.getProperty(key);
+		return PROP.getProperty(key);
 	}
 	
 	/**
@@ -38,10 +45,10 @@ public class PropertiesDemo {
 	public static void update(String key, String value) {
 		FileOutputStream outFile = null;
 		try {
-			outFile = new FileOutputStream(PropertiesDemo.class.getClassLoader().getResource(namePath).getPath());
-			prop.setProperty(key, value);
+			outFile = new FileOutputStream(PropertiesDemo.class.getClassLoader().getResource(NAME_PATH).getPath());
+			PROP.setProperty(key, value);
 			// 将properties中属性列表(键和元素对)写入输出流
-			prop.store(outFile, "");
+			PROP.store(outFile, "");
 			outFile.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -54,11 +61,11 @@ public class PropertiesDemo {
 	 * @Description 通过key删除value
 	 */
 	public static void delete(String key) {
-		prop.remove(key);
+		PROP.remove(key);
 		FileOutputStream outFile = null;
 		try {
-			outFile = new FileOutputStream(PropertiesDemo.class.getClassLoader().getResource(namePath).getPath());
-			prop.store(outFile, "");
+			outFile = new FileOutputStream(PropertiesDemo.class.getClassLoader().getResource(NAME_PATH).getPath());
+			PROP.store(outFile, "");
 		} catch(IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -77,10 +84,11 @@ public class PropertiesDemo {
 	 */
 	@SuppressWarnings("rawtypes")
 	public static void list() {
-		Enumeration en = prop.propertyNames();//得到配置文件的名字
+		// 得到配置文件的名字
+		Enumeration en = PROP.propertyNames();
 		while(en.hasMoreElements()) {
 			String strKey = (String) en.nextElement();
-			String strValue = prop.getProperty(strKey);
+			String strValue = PROP.getProperty(strKey);
 			System.out.println(strKey  + "=" + strValue);
 		}
 	}

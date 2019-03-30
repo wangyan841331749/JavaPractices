@@ -10,7 +10,14 @@ import java.nio.charset.CharsetDecoder;
 
 import org.junit.Test;
 
-public class FileChannelExample {
+/**
+ * 
+ * @author wangyan
+ * @date 2019年3月30日
+ * @Description 
+ * @version 2019年3月30日
+ */
+public class FileChannelExampleTest {
 
 	public static void main(String[] args) {
 		
@@ -25,7 +32,7 @@ public class FileChannelExample {
 	public void readFile() throws IOException {
 		Charset charset = Charset.forName("UTF-8");
 		CharsetDecoder decoder = charset.newDecoder();
-		RandomAccessFile aFile = new RandomAccessFile(FileChannelExample.class.getClassLoader().getResource("nio/nio-data.txt").getPath(), "rw");
+		RandomAccessFile aFile = new RandomAccessFile(FileChannelExampleTest.class.getClassLoader().getResource("nio/nio-data.txt").getPath(), "rw");
 	    FileChannel inChannel = aFile.getChannel();
 	    ByteBuffer buf = ByteBuffer.allocate(200);
 	    CharBuffer charBuffer = CharBuffer.allocate(200);

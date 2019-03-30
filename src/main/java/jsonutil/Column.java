@@ -1,7 +1,13 @@
-package jsonUtil;
+package jsonutil;
 
 import lombok.Data;
-
+/**
+ * 
+ * @author wangyan
+ * @date 2019年3月30日
+ * @Description 
+ * @version 2019年3月30日
+ */
 @Data
 public class Column {
 	private String key;

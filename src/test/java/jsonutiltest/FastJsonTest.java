@@ -1,4 +1,4 @@
-package jsonUtilTest;
+package jsonutiltest;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -7,9 +7,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-import jsonUtil.Query;
-import jsonUtil.User;
-import jsonUtil.UserGroup;
+import jsonutil.Query;
+import jsonutil.User;
+import jsonutil.UserGroup;
 
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
@@ -17,8 +17,14 @@ import org.junit.Test;
 import com.alibaba.fastjson.JSON;
 
 
-
-public class TestFastJson {
+/**
+ * 
+ * @author wangyan
+ * @date 2019年3月30日
+ * @Description 
+ * @version 2019年3月30日
+ */
+public class FastJsonTest {
 
 	
 	public static void main(String[] args) throws IOException {
@@ -42,8 +48,8 @@ public class TestFastJson {
 		List<User> users = new ArrayList<User>();
 		users.add(user1);
 		users.add(user2);
-		String ListUserJson = JSON.toJSONString(users);
-		System.out.println("List<Object>转json字符串:" + ListUserJson);
+		String listUserJson = JSON.toJSONString(users);
+		System.out.println("List<Object>转json字符串:" + listUserJson);
 		//复杂Java类转json字符串
 		UserGroup userGroup = new UserGroup("usersGroup",users);
 		String userGroupJson = JSON.toJSONString(userGroup);
@@ -56,7 +62,7 @@ public class TestFastJson {
 	 * @Description json字符串转Java对象部分
 	 */
 	@Test
-	public void JsonToObject() {
+	public void jsonToObject() {
 		/**
          * json字符串转简单java对象
          */
@@ -86,7 +92,7 @@ public class TestFastJson {
 	 */
 	@Test
 	public void test() throws IOException {
-		InputStream inputStream = new FileInputStream(TestFastJson.class.getClassLoader().getResource("fastJson.json").getFile());
+		InputStream inputStream = new FileInputStream(FastJsonTest.class.getClassLoader().getResource("fastJson.json").getFile());
 		String jsontext = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
 		List<Query> queryList = JSON.parseArray(jsontext, Query.class);
 		for (Query query : queryList) {

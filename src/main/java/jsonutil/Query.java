@@ -1,10 +1,17 @@
-package jsonUtil;
+package jsonutil;
 
 import java.util.List;
 
 import org.apache.commons.collections4.map.LinkedMap;
 
 import lombok.Data;
+/**
+ * 
+ * @author wangyan
+ * @date 2019年3月30日
+ * @Description 
+ * @version 2019年3月30日
+ */
 @Data
 public class Query {
 	private String id;

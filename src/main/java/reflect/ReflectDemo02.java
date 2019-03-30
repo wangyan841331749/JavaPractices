@@ -10,10 +10,22 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Properties;
 
-
+/**
+ * 
+ * @author wangyan
+ * @date 2019年3月30日
+ * @Description 
+ * @version 2019年3月30日
+ */
 public class ReflectDemo02 {
 
-	//获取对象的实例，并操作对象
+
+	/**
+	 * 
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @Description 获取对象的实例，并操作对象
+	 */
 	public static void demo01() throws InstantiationException, IllegalAccessException{
 		Class<?> perClass = null;
 		try {
@@ -28,7 +40,17 @@ public class ReflectDemo02 {
 		System.out.println(per.getName() + "," + per.getAge());
 	}
 	
-	//操作属性
+	/**
+	 * 
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws NoSuchFieldException
+	 * @throws SecurityException
+	 * @throws NoSuchMethodException
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
+	 * @Description 操作属性
+	 */
 	public static void demo02() throws InstantiationException, IllegalAccessException, NoSuchFieldException, SecurityException, NoSuchMethodException, IllegalArgumentException, InvocationTargetException {
 		Class<?> perClass = null;
 		try {
@@ -38,22 +60,33 @@ public class ReflectDemo02 {
 		}
 		Person per = (Person) perClass.newInstance();
 		Field idField = perClass.getDeclaredField("id");
-		//访问的是private修饰的id,但是private是私有的
-		//修改属性的访问权限 使用反射时，如果因为访问权限出现异常，可以通过Field/Method.setAccessible(true)
+		// 访问的是private修饰的id,但是private是私有的
+		// 修改属性的访问权限 使用反射时，如果因为访问权限出现异常，可以通过Field/Method.setAccessible(true)
 		idField.setAccessible(true);
 		idField.set(per, 1);
 		System.out.println(per.getId());
 		System.out.println("==============");
 		Method method = perClass.getDeclaredMethod("privateMethod");
 		method.setAccessible(true);
-		method.invoke(per);//方法的调用:invoke
+		// 方法的调用:invoke
+		method.invoke(per);
 		
 		Method method2 = perClass.getDeclaredMethod("privateMethod2", String.class);
 		method2.setAccessible(true);
-		method2.invoke(per,"zs");//方法的调用:invoke
+		// 方法的调用:invoke
+		method2.invoke(per,"zs");
 	}
 	
-	//操作构造方法
+	/**
+	 * 
+	 * @throws NoSuchMethodException
+	 * @throws SecurityException
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
+	 * @Description 操作构造方法
+	 */
 	@SuppressWarnings("rawtypes")
 	public static void demo03() throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		Class<?> perClass = null;
@@ -73,8 +106,10 @@ public class ReflectDemo02 {
 			System.out.println(constructor);
 		}
 		
-		//获取指定的构造方法
-		//在反射中，根据类型获取方法时候：基本类型和包装类型不同
+		
+		/*
+		 * 获取指定的构造方法。在反射中,根据类型获取方法时候：基本类型和包装类型不同
+		 */
 		Constructor<?> constructor = perClass.getConstructor(int.class);
 		System.out.println(constructor);
 		
@@ -84,13 +119,23 @@ public class ReflectDemo02 {
 		Person per3 = (Person) constructor2.newInstance("zs");
 		System.out.println("per3"+per3);
 		
-		
-		//获得构造函数，然后生成对象实例
+		// 获得构造函数，然后生成对象实例
 		Person instance = (Person) constructor.newInstance(12);
 		System.out.println(instance);
 	}
 	
-	//动态加载类名和方法
+	/**
+	 * 
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 * @throws NoSuchMethodException
+	 * @throws SecurityException
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
+	 * @throws InstantiationException
+	 * @Description 动态加载类名和方法
+	 */
 	public static void demo04() throws FileNotFoundException, IOException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException  {
 		Properties prop = new Properties();
 		final String namePath = "reflect/class.properties";
@@ -108,8 +153,17 @@ public class ReflectDemo02 {
 		method.invoke(perClass.newInstance());
 	}
 	
-	//反射可以越过泛型检查
-	//虽然可以通过反射 访问private等访问修饰符不允许访问的变量，也可以忽略泛型检查，但是不建议这样做，会造成程序混乱
+	
+	/**
+	 * 
+	 * @throws NoSuchMethodException
+	 * @throws SecurityException
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
+	 * @throws InstantiationException
+	 * @Description 反射可以越过泛型检查,虽然可以通过反射 访问private等访问修饰符不允许访问的变量，也可以忽略泛型检查，但是不建议这样做，会造成程序混乱
+	 */
 	public static void demo05() throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
 		ArrayList<Integer> list = new ArrayList<>();
 		list.add(123);

@@ -1,13 +1,23 @@
-package jsonUtilTest;
+package jsonutiltest;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.junit.Test;
-import jsonUtil.User;
+
+import jsonutil.User;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-public class TestGsonJson {
+/**
+ * 
+ * @author wangyan
+ * @date 2019年3月30日
+ * @Description 
+ * @version 2019年3月30日
+ */
+public class GsonJsonTest {
 	
 	/**
 	 * 
@@ -16,9 +26,10 @@ public class TestGsonJson {
 	 */
 	@Test
 	public void test() {
+		final int cycleNumber = 10;
 		Gson gson = new Gson();
 		List<User> users = new ArrayList<User>();
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < cycleNumber; i++) {
 			User p = new User();
 			p.setUserName("username"+i);
 			p.setPassWord("password"+i);

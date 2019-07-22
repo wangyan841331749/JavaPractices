@@ -26,7 +26,7 @@ public class FileChannelExampleTest {
 	/**
 	 * 
 	 * @throws IOException
-	 * @Description 通过NIO读取文件里面的内容，并且也处理了中文乱码的问题
+	 * @Description 通过NIO读取文件里面的内容，并且也处理了中文乱码的问题，这样子有助于解决问题。
 	 */
 	@Test
 	public void readFile() throws IOException {
